@@ -16,7 +16,7 @@ public class endpoint {
             output.flush();
             exchange.close();
         }));
-        server.setExecutor(null); // creates a default executor
+        server.setExecutor(null);
         server.start();
     }
 }
