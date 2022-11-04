@@ -1,9 +1,10 @@
-package main.java;
-
-import main.java.Coin;
-
 import java.util.List;
+import java.util.Optional;
 
 public interface CoinService {
-    List<Coin> getCoinByType(String category);
+    int create(CoinData coin);
+    Optional<Coin> read(int id);
+    List<Coin> read();
+    boolean update (Coin coin);
+    boolean delete(int id);
 }

@@ -1,5 +1,3 @@
-package main.java;
-
 import lombok.*;
 
 @Getter
@@ -7,11 +5,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Coin {
-    private String coinType;
-    private int cpValue;
-    private int spValue;
-    private int epValue;
-    private int gpValue;
-    private int ppValue;
+public class Coin extends CoinData {
+    private int id;
+
+    public Coin(int id, CoinData coinData) {
+        setId(id);
+        setType(coinData.getType());
+        setValue(coinData.getValue());
+    }
+    public Coin(int id, String type, int value) {
+        setId(id);
+        setType(type);
+        setValue(value);
+    }
 }

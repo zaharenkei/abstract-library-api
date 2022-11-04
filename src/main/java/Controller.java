@@ -1,21 +1,37 @@
-package main.java;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("coin")
+@RequestMapping("coins")
 public class Controller {
     @Autowired
     CoinService coinService;
 
-    @GetMapping("type/{type}")
-    public List<Coin> getCoinsByType(@PathVariable("type") String type) {
-        return coinService.getCoinByType(type);
+    @GetMapping("/{id}")
+    public Optional<Coin> read(@PathVariable("id") int id) {
+        return coinService.read(id);
+    }
+
+    @GetMapping("/")
+    public List<Coin> readAll() {
+        return coinService.read();
+    }
+
+    @PostMapping(value ="/", consumes = "application/json", produces = "application/json")
+    public int create(@RequestBody CoinData coin) {
+       return coinService.create(coin);
+    }
+
+    @PutMapping(value ="/", consumes = "application/json", produces = "application/json")
+    public boolean update(@RequestBody Coin coin) {
+        return coinService.update(coin);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable("id") int id) {
+        return coinService.delete(id);
     }
 }

@@ -1,29 +1,59 @@
-package main.java;
-
+import lombok.var;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 public class CoinServiceIml implements CoinService {
 
+    List<Coin> coins = new ArrayList(Arrays.asList(
+            new Coin(1, "Copper", 10),
+            new Coin(2, "Silver", 100),
+            new Coin(3, "Eleclrum", 500),
+            new Coin(4, "Gold", 1000),
+            new Coin(5, "Platinum", 10000)));
+
     @Override
-    public List<Coin> getCoinByType(String coinType) {
-        return getCoinList()
-                .stream()
-                .filter((coin) -> coin.getCoinType().equals(coinType))
-                .collect(Collectors.toList());
+    public int create(CoinData coinData) {
+        var id = coins.stream().max(Comparator.comparing(Coin::getId)).get().getId() + 1;
+        coins.add(new Coin(id, coinData));
+        return id;
     }
 
-    private List<Coin> getCoinList() {
-        return Arrays.asList(new Coin("Copper", 1, 1 / 10, 1 / 50, 1 / 100, 1 / 1000),
-                new Coin("Silver", 10, 1, 1 / 5, 1 / 10, 1 / 100),
-                new Coin("Eleclrum", 50, 5, 1, 1 / 2, 1 / 20),
-                new Coin("Ferrari", 50, 5, 1, 1 / 2, 1 / 20),
-                new Coin("Gold", 100, 10, 2, 1, 1 / 10),
-                new Coin("Platinum", 1000, 100, 20, 10, 1));
+    @Override
+    public Optional<Coin> read(int id) {
+        return coins
+                .stream()
+                .filter((coin) -> coin.getId() == id)
+                .findFirst();
+    }
+
+    @Override
+    public List<Coin> read() {
+        return coins;
+    }
+
+    @Override
+    public boolean update(Coin coinData) {
+        var coin = coins
+                .stream()
+                .filter((c) -> c.getId() == coinData.getId())
+                .findFirst().get();
+        coin.setType(coinData.getType());
+        coin.setValue(coinData.getValue());
+        var index = coins.indexOf(coin);
+        coins.set(index, coin);
+        return true;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        var coin = coins
+                .stream()
+                .filter((c) -> c.getId() == id)
+                .findFirst().get();
+        coins.remove(coin);
+        return true;
     }
 
 }
