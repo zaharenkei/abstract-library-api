@@ -1,0 +1,11 @@
+package demo.model;
+
+import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+@Data
+public class CoinData {
+    private String type;
+    private int value;
+}
