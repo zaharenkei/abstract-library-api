@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 public class CoinData {
     private String type;
-    private int value;
+    private Integer value;
 }
