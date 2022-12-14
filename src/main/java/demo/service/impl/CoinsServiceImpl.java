@@ -7,11 +7,12 @@ import demo.repository.CoinRepository;
 import demo.service.CoinService;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
-import java.util.List;
 
 @Service
 public class CoinsServiceImpl implements CoinService {
@@ -22,7 +23,7 @@ public class CoinsServiceImpl implements CoinService {
     @Override
     public ResponseEntity<Integer> saveCoin(CoinData coinData) {
         var id = coinRepository.findAll().stream().max(Comparator.comparing(Coin::getId)).get().getId() + 1;
-        var coin = new Coin(id,coinData);
+        var coin = new Coin(id, coinData);
         coinRepository.save(coin);
         return ResponseEntity.ok().body(coin.getId());
     }
@@ -30,13 +31,13 @@ public class CoinsServiceImpl implements CoinService {
     @Override
     public ResponseEntity<Coin> read(Integer id) throws ResourceNotFoundException {
         var coin = coinRepository.findById(id)
-          .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
         return ResponseEntity.ok().body(coin);
     }
 
     @Override
-    public List<Coin> read() {
-        return coinRepository.findAll();
+    public Page<Coin> read(Pageable pageable) {
+        return coinRepository.findAll(pageable);
     }
 
     @Override
