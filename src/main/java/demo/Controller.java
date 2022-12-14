@@ -5,10 +5,9 @@ import demo.model.Coin;
 import demo.model.CoinData;
 import demo.service.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("coins")
@@ -22,9 +21,9 @@ public class Controller {
         return coinService.read(id);
     }
 
-    @GetMapping("/")
-    public List<Coin> readAll() {
-        return coinService.read();
+    @GetMapping("/{offset}/{pageSize}")
+    public Page<Coin> readAll(@PathVariable int offset, @PathVariable int pageSize) {
+        return coinService.read(offset, pageSize);
     }
 
     @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
