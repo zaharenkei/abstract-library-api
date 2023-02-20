@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.demo.repository}}
-  AZURE_WEBAPP_NAME: TRPG-LIB-API
+  AZURE_WEBAPP_NAME: TRPG-LIB-JAPI
 
 permissions:
   contents: 'read'
