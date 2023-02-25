@@ -1,4 +1,4 @@
-package demo;
+package demo.Controllers;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.Coin;
