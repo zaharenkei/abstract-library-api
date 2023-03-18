@@ -1,4 +1,4 @@
-package demo;
+package demo.controllers;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.Coin;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("coins")
-public class Controller {
+public class CoinsController {
 
     @Autowired
     private CoinService coinService;
