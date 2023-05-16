@@ -20,6 +20,7 @@ public class CategoryController {
     @GetMapping("/categories")
     public List<Category> getCategories(@RequestParam(name = "parentId", required = false) Integer parentId) {
         List<Category> categories;
+        
         if (parentId == null) {
             categories = mongoTemplate.find(Query.query(Criteria.where("parentId").is(null)), Category.class);
         } else {
