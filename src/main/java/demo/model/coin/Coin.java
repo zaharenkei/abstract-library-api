@@ -1,4 +1,4 @@
-package demo.model;
+package demo.model.coin;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -18,7 +18,6 @@ public class Coin extends CoinData {
     }
 
     public Coin(CoinData coinData) {
-        setId(id);
         setType(coinData.getType());
         setValue(coinData.getValue());
     }

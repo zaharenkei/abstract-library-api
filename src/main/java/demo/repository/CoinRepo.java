@@ -1,7 +1,7 @@
 package demo.repository;
 
-import demo.model.Coin;
+import demo.model.coin.Coin;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface CoinRepository extends MongoRepository<Coin, Integer> {
+public interface CoinRepo extends MongoRepository<Coin, Integer> {
 }
