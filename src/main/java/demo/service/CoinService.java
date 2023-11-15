@@ -1,8 +1,8 @@
 package demo.service;
 
 import demo.exeptions.ResourceNotFoundException;
-import demo.model.Coin;
-import demo.model.CoinData;
+import demo.model.coin.Coin;
+import demo.model.coin.CoinData;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
