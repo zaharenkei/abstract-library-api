@@ -8,11 +8,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ArmorData {
 
     private String armorName;
-    private Integer coast;
-    private String armorClass;
+    private Integer cost;
+    private Integer armorClass;
+    private Boolean dexModifier;
+    private Integer maxDexModifier;
     private Integer strengthRequirement;
-    private String stealth;
+    private Boolean stealthDisadvantage;
     private Integer weight;
     private Integer categoryId;
-    private String categoryName;
 }

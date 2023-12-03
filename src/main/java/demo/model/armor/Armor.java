@@ -14,13 +14,14 @@ public class Armor extends ArmorData {
     public Armor(int id, ArmorData armorData) {
         setId(id);
         setArmorName(armorData.getArmorName());
-        setCoast(armorData.getCoast());
+        setCost(armorData.getCost());
         setArmorClass(armorData.getArmorClass());
+        setDexModifier(armorData.getDexModifier());
+        setMaxDexModifier(armorData.getMaxDexModifier());
+        setStealthDisadvantage(armorData.getStealthDisadvantage());
         setStrengthRequirement(armorData.getStrengthRequirement());
-        setStealth(armorData.getStealth());
         setWeight(armorData.getWeight());
         setCategoryId(armorData.getCategoryId());
-        setCategoryName(armorData.getCategoryName());
     }
 
     public Armor() {

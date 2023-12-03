@@ -1,8 +1,8 @@
-package demo.service;
+package demo.service.armor;
 
 import demo.exeptions.ResourceNotFoundException;
-import demo.model.armorCategory.ArmorCategory;
-import demo.model.armorCategory.ArmorCategoryData;
+import demo.model.armor.armorCategory.ArmorCategory;
+import demo.model.armor.armorCategory.ArmorCategoryData;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

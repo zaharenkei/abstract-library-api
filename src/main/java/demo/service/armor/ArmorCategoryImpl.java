@@ -1,16 +1,14 @@
-package demo.service.impl;
+package demo.service.armor;
 
 import demo.exeptions.ResourceNotFoundException;
-import demo.model.armorCategory.ArmorCategory;
-import demo.model.armorCategory.ArmorCategoryData;
-import demo.repository.ArmorCategoryRepo;
-import demo.service.ArmorCategoryService;
+import demo.model.armor.armorCategory.ArmorCategory;
+import demo.model.armor.armorCategory.ArmorCategoryData;
+import demo.repository.armor.ArmorCategoryRepo;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +20,7 @@ public class ArmorCategoryImpl implements ArmorCategoryService {
 
     @Override
     public ResponseEntity<Integer> save(ArmorCategoryData armorCategoryData) {
-        Optional<ArmorCategory> maxArmorOptional = armorCategoryRepo.findAll().stream().max(Comparator.comparing(ArmorCategory::getId));
+        Optional<ArmorCategory> maxArmorOptional = armorCategoryRepo.findTopByOrderByIdDesc();
         var id = maxArmorOptional.map(category -> category.getId() + 1).orElse(1);
         var category = new ArmorCategory(id, armorCategoryData);
         armorCategoryRepo.save(category);
@@ -47,19 +45,19 @@ public class ArmorCategoryImpl implements ArmorCategoryService {
                 .orElseThrow(() -> new ResourceNotFoundException("ArmorCategory not found for this id :: " + armorCategory.getId()));
         if (armorCategory.getName() != null)
             armor.setName(armorCategory.getName());
-        if (armorCategory.getDon() != null)
-            armor.setDon(armorCategory.getDon());
-        if (armorCategory.getDoff() != null)
-            armor.setDoff(armorCategory.getDoff());
+        if (armorCategory.getDonTimeSec() != null)
+            armor.setDonTimeSec(armorCategory.getDonTimeSec());
+        if (armorCategory.getDofTimeSec() != null)
+            armor.setDofTimeSec(armorCategory.getDofTimeSec());
         armorCategoryRepo.save(armor);
         return ResponseEntity.ok(true);
     }
 
     @Override
     public ResponseEntity<Boolean> delete(Integer id) throws ResourceNotFoundException {
-        var coin = armorCategoryRepo.findById(id)
+        var armorCategory = armorCategoryRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("ArmorCategory not found for this id :: " + id));
-        armorCategoryRepo.delete(coin);
+        armorCategoryRepo.delete(armorCategory);
         return ResponseEntity.ok(true);
     }
 }

@@ -1,9 +1,9 @@
-package demo.controllers;
+package demo.controllers.coin;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.coin.Coin;
 import demo.model.coin.CoinData;
-import demo.service.CoinService;
+import demo.service.coin.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
