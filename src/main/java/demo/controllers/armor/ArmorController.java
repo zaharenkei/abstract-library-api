@@ -1,9 +1,9 @@
-package demo.controllers;
+package demo.controllers.armor;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.armor.Armor;
 import demo.model.armor.ArmorData;
-import demo.service.ArmorService;
+import demo.service.armor.ArmorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

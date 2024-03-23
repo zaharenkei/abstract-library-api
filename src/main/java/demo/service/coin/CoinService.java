@@ -1,4 +1,4 @@
-package demo.service;
+package demo.service.coin;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.coin.Coin;

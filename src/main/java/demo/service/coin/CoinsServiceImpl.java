@@ -1,10 +1,9 @@
-package demo.service.impl;
+package demo.service.coin;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.coin.Coin;
 import demo.model.coin.CoinData;
-import demo.repository.CoinRepo;
-import demo.service.CoinService;
+import demo.repository.coin.CoinRepo;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.Optional;
 
 @Service
@@ -23,7 +21,7 @@ public class CoinsServiceImpl implements CoinService {
 
     @Override
     public ResponseEntity<Integer> saveCoin(CoinData coinData) {
-        Optional<Coin> maxCoinOptional = coinRepo.findAll().stream().max(Comparator.comparing(Coin::getId));
+        Optional<Coin> maxCoinOptional = coinRepo.findTopByOrderByIdDesc();
         var id = maxCoinOptional.map(coin -> coin.getId() + 1).orElse(1);
         var coin = new Coin(id, coinData);
         coinRepo.save(coin);

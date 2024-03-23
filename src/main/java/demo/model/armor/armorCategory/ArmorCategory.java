@@ -1,4 +1,4 @@
-package demo.model.armorCategory;
+package demo.model.armor.armorCategory;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -14,8 +14,8 @@ public class ArmorCategory extends ArmorCategoryData {
     public ArmorCategory(int id, ArmorCategoryData armorCategoryData) {
         setId(id);
         setName(armorCategoryData.getName());
-        setDon(armorCategoryData.getDon());
-        setDoff(armorCategoryData.getDoff());
+        setDonTimeSec(armorCategoryData.getDonTimeSec());
+        setDofTimeSec(armorCategoryData.getDofTimeSec());
     }
 
     public ArmorCategory() {

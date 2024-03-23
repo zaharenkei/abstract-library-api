@@ -1,4 +1,4 @@
-package demo.service;
+package demo.service.armor;
 
 import demo.exeptions.ResourceNotFoundException;
 import demo.model.armor.Armor;
